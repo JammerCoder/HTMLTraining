@@ -1,6 +1,6 @@
-angular.module('MainApp').controller('ProductController', ProductController);
+angular.module('MainApp').controller('ProductsController', ProductsController);
 
-function ProductController($scope) {
+function ProductsController($scope) {
     var productItems = [
         {productName: 'LG Television', productCategory: 'Home Entertainment'},
         {productName: 'Sharp Sound System', productCategory: 'Home Entertainment'},

@@ -3,3 +3,8 @@
     angular.module('MainApp',[]);
 })();
 
+angular.module('MainApp').controller('MainController', MainController);
+
+function MainController(){
+    
+}

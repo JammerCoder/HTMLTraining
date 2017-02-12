@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h1>Products Listing</h1>
+    <a href=!#/>Main</a>
+    <hr/>
+    <div class="col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Search</span>
+                  <input type="text" class="form-control" placeholder="search..." data-ng-model="search.item">
+                </div>
+            </div>
+            <div class="panel-body">
+                <ul >
+                    <li data-ng-repeat="item in products | orderBy: 'productName' | filter:search.item">
+                        {{item.productName | uppercase}} - {{item.productCategory}}
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">New Item</span>
+                  <input type="text" class="form-control" placeholder="Item Name" data-ng-model="newProduct.productName">
+                </div><br/>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Item Category</span>
+                  <input type="text" class="form-control" placeholder="Item Category" data-ng-model="newProduct.productCategory">
+                </div><br/>
+                <button class="btn btn-success" data-ng-click="addNewItem()">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>

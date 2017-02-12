@@ -3,14 +3,51 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Product Listing</title>
 </head>
-
-<body data-ng-app="">
-    {{1+1}}
+<body data-ng-app="MainApp">
+    <div class="container">
+        <div class="container-fluid" data-ng-controller="ProductController">
+            <h1>{{heading}}</h1>
+            <hr/>
+            <div class="col-sm-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">Search</span>
+                          <input type="text" class="form-control" placeholder="search..." data-ng-model="search.item">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul >
+                            <li data-ng-repeat="item in products | orderBy: 'productName' | filter:search.item">
+                                {{item.productName | uppercase}} - {{item.productCategory}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">New Item</span>
+                          <input type="text" class="form-control" placeholder="Item Name" data-ng-model="newProduct.productName">
+                        </div><br/>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">Item Category</span>
+                          <input type="text" class="form-control" placeholder="Item Category" data-ng-model="newProduct.productCategory">
+                        </div><br/>
+                        <button class="btn btn-success" data-ng-click="addNewItem()">Add Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
 <link rel="stylesheet" href="/Core/library/Styles/boostrap/css/bootstrap.css">
 <script src="/Core/library/Scripts/jquery-3.1.1.js"></script>
 <script src="/Core/library/Styles/boostrap/js/bootstrap.min.js"></script>
 <script src="/Core/library/Scripts/angular-1.6.1/angular.js"></script>
+<script src="/Core/library/Scripts/angular-1.6.1/angular-route.js"></script>
+<script src="/Core/project/scripts/modules/ngApp.js"></script>
+<script src="/Core/project/scripts/controllers/ProductController.js"></script>
+<script src="/Core/project/scripts/configs/AppConfig.js"></script>

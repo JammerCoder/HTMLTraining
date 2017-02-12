@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Appliance Listings</h1>
+    <a href="/">Main</a>
+    <hr/>
+    <div >
+        <div class="col-sm-6">
+            <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Search</span>
+                <input type="text" class="form-control" placeholder="Search" aria-describedby="filterByName  " data-ng-model="filterItem"> </div>
+            <ul data-ng-repeat="item in applianceItems | filter:filterItem | orderBy:'itemName'">
+                <li>{{item.itemName | uppercase}} - {{item.type}}</li>
+            </ul>
+            <hr/>
+            <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Item Name</span>
+                <input type="text" class="form-control" placeholder="name" aria-describedby="New Item Name" data-ng-model="newAppliance.itemName">
+            </div>
+            <br/>
+            <div class="input-group"> <span class="input-group-addon" id="basic-addon1">Item Type</span>
+                <input type="text" class="form-control" placeholder="type" aria-describedby="New Item Type" data-ng-model="newAppliance.type">
+            </div>
+            <br/>
+            <button class="btn btn-success" data-ng-click="addNewAppliance()">Add New Item</button>
+        </div>
+    </div>
+</div>

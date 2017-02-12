@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
 
-<body data-ng-app="">
-    {{1+1}}
+<body data-ng-app="app">
+    <ng-view></ng-view>
+    
 </body>
+
 </html>
 <link rel="stylesheet" href="/Core/library/Styles/boostrap/css/bootstrap.css">
 <script src="/Core/library/Scripts/jquery-3.1.1.js"></script>
 <script src="/Core/library/Styles/boostrap/js/bootstrap.min.js"></script>
 <script src="/Core/library/Scripts/angular-1.6.1/angular.js"></script>
+<script src="/Core/library/Scripts/angular-1.6.1/angular-route.js"></script>
+<script>
+    (function () {
+        'use strict';
+        angular.module('app', []);
+    })();
+    
+    angular.module('app').controller('SimpleController', SimpleController);
+    angular.module('app').controller('ApplianceController', ApplianceController);
+
+    function SimpleController($scope) {
+        console.log('No Data factory');
+        
+    }
+    
+
+    function ApplianceController($scope,simpleDataFactory) {
+        $scope.applianceItems = simpleDataFactory.getAppliances();
+        
+        $scope.addNewAppliance = function(){
+            $scope.applianceItems.push({
+                itemName: $scope.newAppliance.itemName,
+                type: $scope.newAppliance.type
+            });
+        }
+    }
+    
+    angular.module('app').requires.push('ngRoute');
+    
+    angular.module('app').config(function ($routeProvider) {
+        $routeProvider
+            .when('/appliance', 
+                  {
+                    controller: 'ApplianceController',
+                    templateUrl: '/Core/views/partials/appliance.html'
+            })
+            .when('/', 
+                  {
+                    controller: 'SimpleController',
+                    templateUrl: '/Core/views/partials/main.html'
+            }).otherwise({redirectTo: '/'});
+    });
+    
+    angular.module('app').factory('simpleDataFactory',function(){
+        
+        var factory = {};
+        var appliances =  [
+            {
+                itemName: 'LG 3D TV',
+                type: 'Home Entertainment'
+            },
+            {
+                itemName: 'LA Germania',
+                type: 'Kitchen Appliance'
+            },
+            {
+                itemName: 'Sharp Monster Audio',
+                type: 'Home Entertainment'
+            }
+        ];
+        
+        factory.getAppliances = function() {
+            return appliances;
+        };
+        
+        return factory;
+    });
+    
+</script>

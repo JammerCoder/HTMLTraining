@@ -1,13 +1,9 @@
 angular.module('MainApp').controller('ProductsController', ProductsController);
 
-function ProductsController($scope) {
-    var productItems = [
-        {productName: 'LG Television', productCategory: 'Home Entertainment'},
-        {productName: 'Sharp Sound System', productCategory: 'Home Entertainment'},
-        {productName: 'La Germania', productCategory: 'Kitchen Appliance'}
-    ];
+function ProductsController($scope, ProductsDataFactory) {
     
-    $scope.products = productItems;
+    
+    $scope.products = ProductsDataFactory.getAllProducts();
     $scope.heading = "Product Listing";
     
     $scope.addNewItem = function(){
